@@ -150,6 +150,9 @@
             transition: transform 0.5s ease-in-out;
         }
         .featured-card {
+            /* Loại bỏ chiều cao cố định */
+            /* height: 580px; */
+            min-height: 600px; /* Đặt chiều cao tối thiểu để hiển thị đầy đủ */
             width: 250px;
             border: 2px solid #f1c40f;
             border-radius: 15px;
@@ -162,7 +165,7 @@
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
-            height: 580px; /* Tăng chiều cao để chứa thêm options */
+            overflow: visible; /* Đảm bảo nội dung không bị cắt */
         }
         .featured-card:hover {
             transform: translateY(-8px);
@@ -222,6 +225,8 @@
             font-size: 14px;
             font-weight: 600;
             transition: all 0.3s ease;
+            position: relative; /* Đảm bảo nút nằm đúng vị trí */
+            bottom: 0; /* Đẩy nút xuống dưới cùng */
         }
         .btn-add-to-cart {
             background: linear-gradient(90deg, #f1c40f, #e67e22);
@@ -272,6 +277,9 @@
 
         /* Product List */
         .product-card {
+            /* Loại bỏ chiều cao cố định */
+            /* height: 580px; */
+            min-height: 600px; /* Đặt chiều cao tối thiểu để hiển thị đầy đủ */
             border: 2px solid #f1c40f;
             border-radius: 15px;
             background: #fff;
@@ -280,9 +288,8 @@
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
-            height: 580px; /* Tăng chiều cao để chứa thêm options */
             padding: 20px;
-            overflow: hidden;
+            overflow: visible; /* Đảm bảo nội dung không bị cắt */
             margin-bottom: 30px;
         }
         .product-card:hover {
@@ -303,7 +310,7 @@
         }
         .card-body {
             text-align: center;
-            flex-grow: 1;
+            flex-grow: 1; /* Cho phép phần body co giãn để chứa nội dung */
             display: flex;
             flex-direction: column;
             justify-content: center;
