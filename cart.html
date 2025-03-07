@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đại Từ Mobile - Giỏ Hàng</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Animate.css for animations -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f5f7fa;
+            margin: 0;
+            padding: 0;
+            color: #2d2d2d;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(90deg, #f1c40f, #e67e22);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        .header.scrolled {
+            padding: 10px 0;
+            background: linear-gradient(90deg, #e67e22, #d35400);
+        }
+        .logo {
+            font-size: 32px;
+            font-weight: 700;
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+        .logo img {
+            width: 50px;
+            height: 50px;
+            margin-right: 15px;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+        .logo:hover img {
+            transform: scale(1.1);
+        }
+        .logo:hover {
+            color: #fff;
+            opacity: 0.9;
+        }
+
+        /* Auth Buttons (Giỏ hàng và Đăng nhập) */
+        .auth-btn {
+            background: #e67e22;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin-left: 10px;
+        }
+        .auth-btn:hover {
+            background: #d35400;
+            transform: scale(1.05);
+        }
+        .auth-btn i {
+            margin-right: 8px;
+        }
+        .auth-btn span {
+            margin-left: 5px;
+        }
+
+        /* Cart Container */
+        .cart-container {
+            padding: 50px 0;
+            background: #fff;
+            min-height: 80vh;
+        }
+        .cart-title {
+            color: #f1c40f;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .cart-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        .cart-table th, .cart-table td {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid #f1c40f;
+        }
+        .cart-table th {
+            background: #f9e79f;
+            color: #2d2d2d;
+            font-weight: 600;
+        }
+        .cart-table td img {
+            height: 80px;
+            width: 80px;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+        .cart-table .remove-btn {
+            background: #e74c3c;
+            color: #fff;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .cart-table .remove-btn:hover {
+            background: #c0392b;
+            transform: scale(1.05);
+        }
+        .cart-summary {
+            background: #fff;
+            padding: 20px;
+            border: 2px solid #f1c40f;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .cart-summary p {
+            font-size: 18px;
+            color: #2d2d2d;
+            margin-bottom: 10px;
+        }
+        .cart-summary .total {
+            font-size: 22px;
+            font-weight: 700;
+            color: #e74c3c;
+        }
+        .checkout-btn, .order-btn {
+            background: linear-gradient(90deg, #f1c40f, #e67e22);
+            color: #fff;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 10px;
+        }
+        .checkout-btn:hover, .order-btn:hover {
+            background: linear-gradient(90deg, #e67e22, #d35400);
+            transform: scale(1.05);
+        }
+        .empty-cart {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 20px;
+            margin-top: 50px;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(90deg, #f1c40f, #e67e22);
+            padding: 40px 0;
+            color: #fff;
+            margin-top: 50px;
+            border-top: 1px solid #fff;
+        }
+        .footer h5 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+        .footer p, .footer a {
+            font-size: 15px;
+            color: #fff;
+            transition: color 0.3s ease;
+        }
+        .footer a:hover {
+            color: #f9e79f;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-3 d-flex align-items-center">
+                    <!-- Thêm link về trang chủ (index.html) cho logo -->
+                    <a href="trangChu.html" class="logo d-flex align-items-center mb-0">
+                        <img src="img/logo tets.webp" alt="Logo">
+                        Đại Từ Mobile
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    <form class="search-form d-flex">
+                        <input class="form-control me-2" type="search" placeholder="Tìm kiếm sản phẩm..." id="search-input">
+                        <button class="btn-search" type="submit"><i class="fas fa-search"></i></button>
+                    </form>
+                </div>
+                <div class="col-md-3 text-end d-flex justify-content-end align-items-center">
+                    <a href="trangChu.html" class="auth-btn d-flex align-items-center"> 
+                        <i class="fas fa-user"></i> TRANG CHỦ
+                    </a>
+                </div>
+                <!-- Xóa nút Giỏ hàng và Đăng nhập trong header vì không cần thiết trong trang giỏ hàng -->
+            </div>
+        </div>
+    </header>
+
+    <!-- Cart Content -->
+    <div class="container cart-container">
+        <h2 class="cart-title">Giỏ Hàng Của Bạn</h2>
+        <div id="cart-content"></div>
+        <div id="cart-summary" class="cart-summary"></div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>Đại Từ Mobile</h5>
+                    <p>Cửa hàng công nghệ hàng đầu Việt Nam</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Liên hệ</h5>
+                    <p><i class="fas fa-phone me-2"></i> 0373376616</p>
+                    <p><i class="fas fa-envelope me-2"></i> kientocxuan@gmail.com</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Theo dõi chúng tôi</h5>
+                    <div class="d-flex justify-content-start">
+                        <!-- Thêm link mạng xã hội thực tế -->
+                        <a href="https://www.facebook.com/kienthe.nguyen.71" class="me-3" target="_blank"><i class="fab fa-facebook fa-2x" style="color: #fff;"></i></a>
+                        <a href="https://www.youtube.com" class="me-3" target="_blank"><i class="fab fa-youtube fa-2x" style="color: #fff;"></i></a>
+                        <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram fa-2x" style="color: #fff;"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="cart.js"></script>
+</body>
+</html>
